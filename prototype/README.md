@@ -3,12 +3,7 @@ Bring the __rabbitMQuest__ stack with basic level of security for quick prototyp
 
 ## Configuration
 
-1. Begin by changing the environment variables of each of the components of the stack.
-
-    __NOTE__: _RabbitMQ__ devs do not consider it best practice to setup the broker via environment variables hence changes to it can be adapted via its respective configuration file (`rabbitmq.conf`)
-
-2. Adapt changes to `rabbitmq.conf` for broker
-3. Adapt changes to `telegraf.toml` file in order to change any other form of metric collection as well as incoming payload from the IoT sensors e.g. `json` or `influx` etc.
+1. Adapt changes to `telegraf.toml` file in order to change any other form of metric collection as well as incoming payload from the IoT sensors e.g. `json` or `influx` etc.
 
 ## Bringing the Stack up
 
@@ -20,9 +15,9 @@ create a docker network
 
 add `-d` above if you wish to detach the logs
 
-## Adding User Credentials for `telegraf` / MQTT Clients
+## Adding User Credentials for `telegraf`
 
-`telegraf` as a consumer does not have any user credentials to obtain metrics and incoming MQTT payload from the broker, hence on needs to create these credentials.
+`telegraf` as a consumer does not have any user credentials to obtain incoming payload from the broker, hence on needs to create these credentials.
 
 As a result of this the `service` will keep on failing initially.
 
@@ -50,26 +45,8 @@ As a result of this the `service` will keep on failing initially.
     ![RabbitMQ_MQTT_User](../.github/images/rabbit_mqtt_user.png)
 
 
-## Publishing Test
-
-Use an MQTT Client like [MQTT.fx](https://mqttfx.org)
 
 ![MQTT_CLIENT_Configuraiton](../.github/images/mqtt_client_configuration.png)
-
-### Publish Topics
-
-If you publish `IOT/sensor1/env` with an InfluxDB Line Protocol String
-
-    environment,type=BME280 temp=23.43
-
-This should be able to insert data into QuestDB since the following configuration is present in `telegraf.toml`
-
-```toml
-    binding_key = "IOT.#"
-    data_format = "influx"
-```
-
-Adapt your `binding_key` according to your MQTT topics according to your setups.
 
 
 ## QuestDB Test
