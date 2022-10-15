@@ -14,14 +14,7 @@
 
 ## INPUT PLUGINS
 
-# Collect RabbitMQ Metrics
-[[inputs.rabbitmq]]
-
-    url = "http://rabbitmq:15672"
-    username = "${TELEGRAF_AMQP_BROKER_USERNAME}"
-    password = "${TELEGRAF_AMQP_BROKER_PASSWORD}"
-
-# MQTT => AMQP Bridging
+# AMQP Bridging
 [[inputs.amqp_consumer]]
 
   ## Brokers to consume from.
@@ -36,7 +29,6 @@
 
   ## Exchange type; common types are "direct", "fanout", "topic", "header", "x-consistent-hash".
   exchange_type = "topic"
-
 
   ## Exchange durability can be either "transient" or "durable".
   exchange_durability = "durable"
@@ -59,10 +51,10 @@
   binding_key = "IOT.#"
   
   ## Data format to consume.
-  data_format = "influx"
+  #data_format = "influx"
 
   ## If Payload is JSON use
-  # data_format = "json"
+  data_format = "json"
 
   ## Refer to Telegraf documentation on how to Parse incoming JSON
 
