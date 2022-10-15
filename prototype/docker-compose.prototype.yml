@@ -27,7 +27,7 @@ services:
         networks: 
             - "iotstack"
         volumes: 
-            - ./telegraf/telegraf.toml:/etc/telegraf/telegraf.conf:ro
+            - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
 
 volumes: 
     questdb_data:
