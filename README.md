@@ -1,15 +1,5 @@
 # rabbiTMQuest
-RabbitMQ + Telegraf + QuestDB Stack for AMQP / MQTT PubSub Systems
-
-```
-rabbITMQuest
-       -----
-       |-- QuestDB 5.0.3
-     -
-     |-- Telegraf v1.18
----
- |-- RABBITMQ 3.8
-```
+RabbitMQ + Telegraf + QuestDB Stack for AMQP Comsomer Systems
 
 ## Architecture
 
@@ -24,18 +14,9 @@ rabbITMQuest
 3. [QuestDB](https://questdb.io): A Blazing Fast Time-Series Database that queries and processes data before you could say rabbitMQuest.
 
 
-### MQTT -> AMQP Bridging
+### AMQP Bridging
 
-RabbitMQ Provides the MQTT v3.1.1 in-built plugin and provides an internal mechanism to convert MQTT Topics into AMQP Queue bindings quite easily.
-[Documentation](https://www.rabbitmq.com/mqtt.html#implementation)
-
-__Example__
-
-| MQTT Topic          | AMQP Queue          |
-|---------------------|---------------------|
-| `IOT/sensorID/temp` | `IOT.sensorID.temp` |
-
-> Hence, Publish with MQTT, Consume with AMQP and no need to write exclusive services / scripts to store it into _QuestDB_
+> Consume with AMQP and no need to write exclusive services / scripts to store it into _QuestDB_
 
 
 ## Usage
